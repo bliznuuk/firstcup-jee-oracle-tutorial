@@ -34,7 +34,11 @@ public class FirstcupUser implements Serializable {
     }
 
     public FirstcupUser(Date date, int difference) {
-		// Insert code here
+        Calendar birthdayDate = new GregorianCalendar();
+        birthdayDate.setTime(date);
+
+        birthday = birthdayDate;
+        ageDifference = difference;
     }
 
     /**
