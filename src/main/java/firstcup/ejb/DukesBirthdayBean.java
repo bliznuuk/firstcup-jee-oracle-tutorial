@@ -32,9 +32,10 @@ public class DukesBirthdayBean {
     private EntityManager em;
 
     public Double getAverageAgeDifference() {
-	Query averegeDiffQuery = em.createNamedQuery("findAverageDifferenceOfAllFirstcupUsers");
-        Double averegeDiff = (Double) averegeDiffQuery.getSingleResult();
-        return averegeDiff;
+	Query averageDiffQuery = em.createNamedQuery("findAverageDifferenceOfAllFirstcupUsers");
+        Double averageAgeDiff = (Double) averageDiffQuery.getSingleResult();
+        logger.log(Level.INFO, "Average Age Difference is: {0}", averageAgeDiff);
+        return averageAgeDiff;
     }
 
     public int getAgeDifference(Date date) {
@@ -43,19 +44,29 @@ public class DukesBirthdayBean {
         
         Calendar dukesBD = new GregorianCalendar(1995, Calendar.MAY, 23);
 
-        int yearsDif = dukesBD.get(Calendar.YEAR) - userBD.get(Calendar.YEAR);
-        if ((yearsDif > 0) && 
+        int ageDiff = dukesBD.get(Calendar.YEAR) - userBD.get(Calendar.YEAR);
+        logger.log(Level.INFO, "Raw age difference is: {0}", ageDiff);
+        
+        // If duke is older than user (ageDiff > 0)
+        // but his birthday is earlier on the calendar than users, 
+        // then their age difference is redused by 1.
+        if ((ageDiff > 0) && 
             (dukesBD.get(Calendar.DAY_OF_YEAR) < userBD.get(Calendar.DAY_OF_YEAR))) {
-            yearsDif--;
+            ageDiff--;
         } 
-        else if ((yearsDif < 0) &&
+        // If duke is younger than user (AgeDiff < 0)
+        // but his birthday is leter on the calendar than users, 
+        // then their age difference is increased by 1.
+        else if ((ageDiff < 0) &&
                  (dukesBD.get(Calendar.DAY_OF_YEAR) > userBD.get(Calendar.DAY_OF_YEAR))) {
-            yearsDif++;
+            ageDiff++;
         }
 
-        FirstcupUser newUserEntity = new FirstcupUser(date, yearsDif);
+        FirstcupUser newUserEntity = new FirstcupUser(date, ageDiff);
         em.persist(newUserEntity);
         
-        return yearsDif;
+        logger.log(Level.INFO, "Final Age Difference is: {0}", ageDiff);
+        
+        return ageDiff;
     }
 }
