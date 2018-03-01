@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  * DukesBirthdayBean is a stateless session bean that calculates the age
@@ -31,10 +32,28 @@ public class DukesBirthdayBean {
     private EntityManager em;
 
     public Double getAverageAgeDifference() {
-		// Insert code here
+	Query averegeDiffQuery = em.createNamedQuery("findAverageDifferenceOfAllFirstcupUsers");
+        Double averegeDiff = (Double) averegeDiffQuery.getSingleResult();
+        return averegeDiff;
     }
 
     public int getAgeDifference(Date date) {
-		// Insert code here
+        Calendar userBD = GregorianCalendar.getInstance();
+        userBD.setTime(date);
+        
+        Calendar dukesBD = new GregorianCalendar(1995, Calendar.MAY, 23);
+
+        int yearsDif = dukesBD.get(Calendar.YEAR) - userBD.get(Calendar.YEAR);
+        if ((yearsDif > 0) && 
+            (dukesBD.get(Calendar.DAY_OF_YEAR) < userBD.get(Calendar.DAY_OF_YEAR))) {
+            yearsDif--;
+        } 
+        else if ((yearsDif < 0) &&
+                 (dukesBD.get(Calendar.DAY_OF_YEAR) > userBD.get(Calendar.DAY_OF_YEAR))) {
+            yearsDif++;
+        }
+
+        return yearsDif;
+        
     }
 }
