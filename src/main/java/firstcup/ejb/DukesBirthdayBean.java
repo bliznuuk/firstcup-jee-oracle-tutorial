@@ -53,7 +53,9 @@ public class DukesBirthdayBean {
             yearsDif++;
         }
 
-        return yearsDif;
+        FirstcupUser newUserEntity = new FirstcupUser(date, yearsDif);
+        em.persist(newUserEntity);
         
+        return yearsDif;
     }
 }
