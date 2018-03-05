@@ -50,7 +50,11 @@ public class DukesBDay implements Serializable {
      * @return the value of age
      */
     public int getAge() {
-		// Insert code here
+	Client dukeAgeBean = ClientBuilder.newClient();
+        WebTarget target = dukeAgeBean.target("http://localhost:8080/dukes-age/webapi/dukesAge");
+        String response = target.request().get(String.class);
+        this.age = new Integer(response);
+        return this.age;
     }
 
     /**
