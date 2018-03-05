@@ -47,15 +47,15 @@ public class DukesBirthdayBean {
         int ageDiff = dukesBD.get(Calendar.YEAR) - userBD.get(Calendar.YEAR);
         logger.log(Level.INFO, "Raw age difference is: {0}", ageDiff);
         
-        // If duke is older than user (ageDiff > 0)
-        // but his birthday is earlier on the calendar than users, 
+        // If duke is younger than user (ageDiff > 0)
+        // but his birthday occurs before the user's, 
         // then their age difference is redused by 1.
         if ((ageDiff > 0) && 
             (dukesBD.get(Calendar.DAY_OF_YEAR) < userBD.get(Calendar.DAY_OF_YEAR))) {
             ageDiff--;
         } 
-        // If duke is younger than user (AgeDiff < 0)
-        // but his birthday is leter on the calendar than users, 
+        // If duke is older than user (AgeDiff < 0)
+        // but his birthday occurs after the users, 
         // then their age difference is increased by 1.
         else if ((ageDiff < 0) &&
                  (dukesBD.get(Calendar.DAY_OF_YEAR) > userBD.get(Calendar.DAY_OF_YEAR))) {
