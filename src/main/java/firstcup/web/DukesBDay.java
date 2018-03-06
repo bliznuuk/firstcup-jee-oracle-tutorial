@@ -41,12 +41,14 @@ public class DukesBDay implements Serializable {
     }
 
     public String processBirthday() {
-        setAverageAgeDifference(dukesBirthdayBean.getAverageAgeDifference());
         setAgeDiff(dukesBirthdayBean.getAgeDifference(yourBD));
+        logger.log(Level.INFO, "Age difference if {0}", ageDiff);
+        setAbsAgeDiff(Math.abs(getAgeDiff()));
+        logger.log(Level.INFO, "Absolute age difference is {0}", absAgeDiff);
+        setAverageAgeDifference(dukesBirthdayBean.getAverageAgeDifference());
+        logger.log(Level.INFO, "Average age difference is {0}", averageAgeDifference);
         
-        
-        
-        return "response.xhtml";
+        return "/response.xhtml";
     }
     
     /**
@@ -55,10 +57,16 @@ public class DukesBDay implements Serializable {
      * @return the value of age
      */
     public int getAge() {
-	Client dukeAgeBean = ClientBuilder.newClient();
-        WebTarget target = dukeAgeBean.target("http://localhost:8080/dukes-age/webapi/dukesAge");
-        String response = target.request().get(String.class);
-        this.age = new Integer(response);
+        try {
+            Client client = ClientBuilder.newClient();
+            WebTarget dukesAgeWS = client.target("http://localhost:8080/dukes-age/webapi/dukesAge");
+            String response = dukesAgeWS.request().get(String.class);
+            this.age = Integer.parseInt(response);
+        } 
+        catch (IllegalArgumentException | NullPointerException | 
+                WebApplicationException ex){
+            logger.severe("Processing of HTTP response failed.");
+        }
         return this.age;
     }
 
