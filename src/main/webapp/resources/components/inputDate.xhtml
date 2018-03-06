@@ -17,12 +17,14 @@
 
     <!-- INTERFACE -->
     <cc:interface>
-	<!-- Insert code here -->
+        <cc:attribute name="date">
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-    	<!-- Insert code here -->
+        <h:inputText id="getDate" value="#{cc.attrs.date}" />
+        <f:convertDateTime pattern="MM/dd/yyyy" />
+        <h:message for="getDate" style="color: red" />
     </cc:implementation>
 
 </html>
