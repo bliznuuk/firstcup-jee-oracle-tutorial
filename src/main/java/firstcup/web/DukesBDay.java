@@ -40,13 +40,18 @@ public class DukesBDay implements Serializable {
     public DukesBDay() {
     }
 
+    /**
+     * Set all properties fields.
+     * 
+     * @return response page address.
+     */
     public String processBirthday() {
         setAgeDiff(dukesBirthdayBean.getAgeDifference(yourBD));
-        logger.log(Level.INFO, "Age difference if {0}", ageDiff);
+        logger.log(Level.INFO, "Age difference: {0}", ageDiff);
         setAbsAgeDiff(Math.abs(getAgeDiff()));
-        logger.log(Level.INFO, "Absolute age difference is {0}", absAgeDiff);
+        logger.log(Level.INFO, "Absolute age difference: {0}", absAgeDiff);
         setAverageAgeDifference(dukesBirthdayBean.getAverageAgeDifference());
-        logger.log(Level.INFO, "Average age difference is {0}", averageAgeDifference);
+        logger.log(Level.INFO, "Average age difference: {0}", averageAgeDifference);
         
         return "/response.xhtml";
     }
