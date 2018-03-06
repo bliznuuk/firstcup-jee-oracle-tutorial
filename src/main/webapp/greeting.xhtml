@@ -18,7 +18,11 @@
     </h:head>
     <h:body>
         <h:form>
-        	<!-- Insert code here -->
+            <h:outputText value="#{bundle.Welcome}"/>
+            <h:outputText value="#{bundle.Instructions}"/>
+            
+            <fc:inputDate binding="#{dukesBDay.yourBD}"/>
+            <h:commandButton label="#{bundle.Submit}" action="#{dukesBDay.processBirthday()}"/>
         </h:form>
 
     </h:body>
