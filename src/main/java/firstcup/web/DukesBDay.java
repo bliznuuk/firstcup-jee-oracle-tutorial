@@ -41,7 +41,12 @@ public class DukesBDay implements Serializable {
     }
 
     public String processBirthday() {
-		// Insert code here
+        setAverageAgeDifference(dukesBirthdayBean.getAverageAgeDifference());
+        setAgeDiff(dukesBirthdayBean.getAgeDifference(yourBD));
+        
+        
+        
+        return "response.xhtml";
     }
     
     /**
