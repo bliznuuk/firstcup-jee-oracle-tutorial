@@ -17,7 +17,23 @@
     </h:head>
     <h:body>
         <h:form>
-        	<!-- Insert code here -->
+            <h:outputText value="#{bundle.YouAre} " />
+            <h:outputText rendered="#{dukesBDay.ageDiff lt 0}" value="#{bundle.Younger}" />
+            <h:outputText rendered="#{dukesBDay.ageDiff == 0}" value="#{bundle.SameAge}" />
+            <h:outputText rendered="#{dukesBDay.ageDiff gt 0}" value="#{bundle.Older}" />
+            
+            <p/>
+            <h:outputText value="#{bundle.AverageAge} #{dukesBDay.averageAgeDifference} " />
+            <h:outputText rendered="#{dukesBDay.averageAgeDifference eq 1 or 
+                                      dukesBDay.averageAgeDifference eq -1}" 
+                          value="#{bundle.Year}" />
+            <h:outputText rendered="#{dukesBDay.averageAgeDifference gt 1 or 
+                                      dukesBDay.averageAgeDifference lt -1 or 
+                                      dukesBDay.averageAgeDifference eq 0}"
+                          value="#{bundle.Years}" />
+            
+            <p/>
+            <h:commandButton value="#{bundle.Back}" action="/greeting.xhtml" />
         </h:form>
     </h:body>
 </html>
