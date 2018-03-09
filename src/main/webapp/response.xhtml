@@ -17,23 +17,21 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:outputText value="#{bundle.YouAre} " />
+            <h:outputText value="#{bundle.YouAre}" />
+            <h:outputText rendered="#{dukesBDay.ageDiff == 0}" value=" #{bundle.SameAge}" />
+            
+            <h:outputText rendered="#{dukesBDay.absAgeDiff != 0}" value=" #{dukesBDay.absAgeDiff} "/>
+            <h:outputText rendered="#{dukesBDay.absAgeDiff == 1}" value="#{bundle.Year} " />
+            <h:outputText rendered="#{dukesBDay.absAgeDiff gt 1}" value="#{bundle.Years} " />
+            
             <h:outputText rendered="#{dukesBDay.ageDiff lt 0}" value="#{bundle.Younger}" />
-            <h:outputText rendered="#{dukesBDay.ageDiff == 0}" value="#{bundle.SameAge}" />
             <h:outputText rendered="#{dukesBDay.ageDiff gt 0}" value="#{bundle.Older}" />
             
             <p/>
             <h:outputText value="#{bundle.AverageAge} #{dukesBDay.averageAgeDifference} " />
-            <h:outputText rendered="#{dukesBDay.averageAgeDifference eq 1 or 
-                                      dukesBDay.averageAgeDifference eq -1}" 
-                          value="#{bundle.Year}" />
-            <h:outputText rendered="#{dukesBDay.averageAgeDifference gt 1 or 
-                                      dukesBDay.averageAgeDifference lt -1 or 
-                                      dukesBDay.averageAgeDifference eq 0}"
-                          value="#{bundle.Years}" />
             
             <p/>
-            <h:commandButton value="#{bundle.Back}" action="/greeting.xhtml" />
+            <h:commandButton id="outPut" value="#{bundle.Back}" action="/greeting.xhtml" />
         </h:form>
     </h:body>
 </html>
