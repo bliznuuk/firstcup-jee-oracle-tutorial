@@ -18,12 +18,20 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:outputText value="#{bundle.Welcome}"/> <br/>
+            <h2>
+                <h:outputText value="#{bundle.Welcome}"/>
+            </h2>
+            <h:outputText value="#{bundle.DukeIs}"/>
+            <h:outputText value=" #{dukesBDay.age} "/>
+            <h:outputText value="#{bundle.YearsOldToday}"/>
+            
             <p/>
             <h:outputText value="#{bundle.Instructions}"/> <br/>
             <p/>
-            <fc:inputDate date="#{dukesBDay.yourBD}"/>
-            <h:commandButton value="#{bundle.Submit}" action="#{dukesBDay.processBirthday()}"/>
+            
+            <fc:inputDate id="userBirthday" date="#{dukesBDay.yourBD}"/>
+            <h:commandButton value="#{bundle.Submit}" 
+                             action="#{dukesBDay.processBirthday()}"/>
         </h:form>
 
     </h:body>
