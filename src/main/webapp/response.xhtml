@@ -18,20 +18,20 @@
         <h:outputStylesheet library="css" name="main.css" />
     </h:head>
     <h:body>
-        <h:form id="response">
-            <h:outputText value="#{bundle.YouAre}" />
+        <h:form id="mainForm">
+            <h:outputText id="beginningOfAnswer" value="#{bundle.YouAre}" />
             
             <h:panelGroup id="answer" layout="block">
-                <h:outputText id="ageDiff" value="#{dukesBDay.ageDiff}" />
+                <h:outputText id="ageDiff" styleClass="hidenAnswer" value="#{dukesBDay.ageDiff}" />
 
-                <h:outputText id="sameAge" value=" #{bundle.SameAge}" />
+                <h:outputText id="sameAge" styleClass="hidenAnswer" value=" #{bundle.SameAge}" />
 
-                <h:outputText id="absAgeDiff" value=" #{dukesBDay.absAgeDiff} " />
-                <h:outputText id="year" value="#{bundle.Year} " />
-                <h:outputText id="years" value="#{bundle.Years} " />
+                <h:outputText id="absAgeDiff" styleClass="hidenAnswer" value=" #{dukesBDay.absAgeDiff} " />
+                <h:outputText id="year" styleClass="hidenAnswer" value="#{bundle.Year} " />
+                <h:outputText id="years" styleClass="hidenAnswer" value="#{bundle.Years} " />
 
-                <h:outputText id="younger" value="#{bundle.Younger}" />
-                <h:outputText id="older" value="#{bundle.Older}" />
+                <h:outputText id="younger" styleClass="hidenAnswer" value="#{bundle.Younger}" />
+                <h:outputText id="older" styleClass="hidenAnswer" value="#{bundle.Older}" />
             </h:panelGroup>
             
             <h:outputText id="averageAge" value="#{bundle.AverageAge} #{dukesBDay.averageAgeDifference} " />
